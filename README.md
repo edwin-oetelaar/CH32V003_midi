@@ -2,6 +2,7 @@
 
 bouw een midi-controller die een fatar-klavier (velocity met 2 contacten per toets) en 8 potmeters, 2 modulatiewielen en 3 schakelaars uitleest en vertaalt naar midi (din en/of usb).
 
+![image of first melancholytron](Melancholytron_visual_2.jpg)
 ---
 
 # uitgangspunten & eisen
