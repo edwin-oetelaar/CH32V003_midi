@@ -1,6 +1,6 @@
 # doel
 
-bouw een midi-controller die een fatar-klavier (velocity met 2 contacten per toets) en 9 potmeters uitleest en vertaalt naar midi (din en/of usb).
+bouw een midi-controller die een fatar-klavier (velocity met 2 contacten per toets) en 8 potmeters, 2 modulatiewielen en 3 schakelaars uitleest en vertaalt naar midi (din en/of usb).
 
 ---
 
