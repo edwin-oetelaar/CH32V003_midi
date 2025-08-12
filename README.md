@@ -250,3 +250,72 @@ ch32v003 heeft te weinig directe i/o voor 122 contacten. twee robuuste opties:
 * pedalen (sustain, expression) op extra adc/gpio.
 * oled/lcd + encoders voor live-config.
 * ble‑midi (andere mcu).
+
+Je hebt gelijk: de CH32V003 (TSSOP-20) heeft **geen SWCLK**. Programmeren/debuggen gaat via **één draad: SWIO** (propriëtair, niet ARM-SWD).
+
+## Wat werkt (en wat niet)
+
+* **Aanrader**: **WCH-LinkE** (let op de **E**). Die spreekt de 1-wire **SWIO/SDI** interface van de CH32V003. Aansluiten: **3V3**, **GND**, **SWIO (PD1)**, en optioneel **NRST**. ([GitHub][1], [Zephyr Project Documentation][2], [element14 Community][3])
+* **Raspberry Pi Debug Probe**: **nee** — dat is CMSIS-DAP voor ARM-**SWD** (2-wire), **niet** compatibel met WCH-SWIO. ([Raspberry Pi][4])
+* **Tigard (FT2232H)**: ook **nee** voor SWIO. Tigard kan JTAG/SWD/I²C/SPI e.d., maar WCH’s **single-wire** protocol niet. (Handig wél voor UART/logic-analyzer tijdens debug.) ([Crowd Supply][5])
+
+## OpenOCD + GDB met CH32V003
+
+1. **Gebruik de WCH-fork van OpenOCD** (of een fork die **wlink** ondersteunt). Installeer/bouw bijv.:
+
+   * `openwch/openocd_wch` (officiële WCH-fork), of
+   * `kprasadvnsi/riscv-openocd-wch` (mirror). ([GitHub][6])
+2. **Zet WCH-LinkE in RISC-V-modus** (lang ModeS indrukken tijdens inpluggen of met WCH-LinkUtility). ([Olimex][7])
+3. **Start OpenOCD** met de meegeleverde cfg’s (namen verschillen per fork, maar typisch zoiets als):
+
+   ```bash
+   openocd -f interface/wlink.cfg \
+           -f target/wch-riscv.cfg \
+           -f target/ch32v003.cfg
+   ```
+
+   (Als er geen aparte `ch32v003.cfg` is, volstaat vaak alleen `wch-riscv.cfg` van die fork — check de repo’s scripts-map.) ([GitHub][6])
+4. **Koppel GDB** vanaf Ubuntu 22.04:
+
+   ```bash
+   riscv-none-elf-gdb build/firmware.elf
+   (gdb) target remote :3333
+   (gdb) monitor reset halt
+   (gdb) load
+   (gdb) continue
+   ```
+
+   (Werkt met de WCH-OpenOCD backend via WCH-LinkE.) ([Hackaday][8])
+
+## Alternatieven (zonder WCH-LinkE)
+
+* **PicoRVD**: RP2040-based SWIO-debugger die als **GDB remote** fungeert. Werkt verrassend goed, maar is nog **alpha**. ([GitHub][9])
+* **CLI-flashers** zoals **wlink** of **minichlink** (flash/erase/reset), zonder GDB-stap-voor-stap debug. ([GitHub][10])
+
+## Bonus: seriële bootloader
+
+De CH32V003 heeft een **factory bootloader** die je (na eenmalige optie-byte setup via SWIO) ook over **UART** kunt gebruiken voor firmware-updates. Handig voor “in-field” updates, maar eerste keer heb je toch SWIO nodig. ([GitHub][11], [Pallav Aggarwal][12])
+
+---
+
+### Kort antwoord op je vraag
+
+* **TSSOP-20 CH32V003** programmeer je via **SWIO (PD1)**.
+* **Tigard** en **RPi Debug Probe** zijn **niet geschikt** voor SWIO.
+* **OpenOCD + GDB** werken prima met **WCH-LinkE** en de **WCH-OpenOCD fork**.
+
+Wil je dat ik een mini “quick-start” pinout/bedradingsschets + exacte OpenOCD-cmd’s maak voor jouw board (met udev-rules voor Ubuntu 22.04)?
+
+[1]: https://github.com/cjacker/opensource-toolchain-ch32v?utm_source=chatgpt.com "Opensource toolchain for WCH ch32v RISC-V 32bit MCU"
+[2]: https://docs.zephyrproject.org/latest/boards/wch/ch32v003f4p6_dev_board/doc/index.html?utm_source=chatgpt.com "WCH CH32V003F4P6 Development Board"
+[3]: https://community.element14.com/technologies/embedded/b/blog/posts/low-cost-microcontrollers-using-a-ch32v003-risc-v-device?utm_source=chatgpt.com "Low-Cost Microcontrollers: Using a CH32V003 RISC-V ..."
+[4]: https://www.raspberrypi.com/documentation/microcontrollers/debug-probe.html?utm_source=chatgpt.com "Raspberry Pi Debug Probe - Raspberry Pi Documentation"
+[5]: https://www.crowdsupply.com/securinghw/tigard/updates/i2c-and-swd-mode?utm_source=chatgpt.com "Tigard - I2C & SWD mode"
+[6]: https://github.com/openwch/openocd_wch "GitHub - openwch/openocd_wch: OpenOCD for WCH CH32"
+[7]: https://www.olimex.com/Products/RISC-V/WCH/WCH-LinkE/resources/WCH-LinkUserManual.PDF?utm_source=chatgpt.com "[PDF] WCH-LinkUserManual - Olimex"
+[8]: https://hackaday.io/page/394994?utm_source=chatgpt.com "Getting blinky working on the WCH CH32V003F4 development board"
+[9]: https://github.com/aappleby/picorvd?utm_source=chatgpt.com "aappleby/picorvd: GDB-compatible RISC-V Debugger for ..."
+[10]: https://github.com/ch32-rs/wlink?utm_source=chatgpt.com "ch32-rs/wlink: An open source WCH-Link library/command line tool ..."
+[11]: https://github.com/basilhussain/ch32v003-bootloader-docs?utm_source=chatgpt.com "WCH CH32V003 Factory Bootloader - The Missing Manual"
+[12]: https://pallavaggarwal.in/2023/11/22/ch32v003-how-to-flash-program-using-serial-port/?utm_source=chatgpt.com "CH32V003: How To Flash Program Using Serial Port »"
+
