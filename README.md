@@ -307,16 +307,16 @@ De CH32V003 heeft een **factory bootloader** die je (na eenmalige optie-byte set
 
 Wil je dat ik een mini “quick-start” pinout/bedradingsschets + exacte OpenOCD-cmd’s maak voor jouw board (met udev-rules voor Ubuntu 22.04)?
 
-[1]: https://github.com/cjacker/opensource-toolchain-ch32v?utm_source=chatgpt.com "Opensource toolchain for WCH ch32v RISC-V 32bit MCU"
-[2]: https://docs.zephyrproject.org/latest/boards/wch/ch32v003f4p6_dev_board/doc/index.html?utm_source=chatgpt.com "WCH CH32V003F4P6 Development Board"
-[3]: https://community.element14.com/technologies/embedded/b/blog/posts/low-cost-microcontrollers-using-a-ch32v003-risc-v-device?utm_source=chatgpt.com "Low-Cost Microcontrollers: Using a CH32V003 RISC-V ..."
-[4]: https://www.raspberrypi.com/documentation/microcontrollers/debug-probe.html?utm_source=chatgpt.com "Raspberry Pi Debug Probe - Raspberry Pi Documentation"
-[5]: https://www.crowdsupply.com/securinghw/tigard/updates/i2c-and-swd-mode?utm_source=chatgpt.com "Tigard - I2C & SWD mode"
+[1]: https://github.com/cjacker/opensource-toolchain-ch32v "Opensource toolchain for WCH ch32v RISC-V 32bit MCU"
+[2]: https://docs.zephyrproject.org/latest/boards/wch/ch32v003f4p6_dev_board/doc/index.html "WCH CH32V003F4P6 Development Board"
+[3]: https://community.element14.com/technologies/embedded/b/blog/posts/low-cost-microcontrollers-using-a-ch32v003-risc-v-device "Low-Cost Microcontrollers: Using a CH32V003 RISC-V ..."
+[4]: https://www.raspberrypi.com/documentation/microcontrollers/debug-probe.html "Raspberry Pi Debug Probe - Raspberry Pi Documentation"
+[5]: https://www.crowdsupply.com/securinghw/tigard/updates/i2c-and-swd-mode "Tigard - I2C & SWD mode"
 [6]: https://github.com/openwch/openocd_wch "GitHub - openwch/openocd_wch: OpenOCD for WCH CH32"
-[7]: https://www.olimex.com/Products/RISC-V/WCH/WCH-LinkE/resources/WCH-LinkUserManual.PDF?utm_source=chatgpt.com "[PDF] WCH-LinkUserManual - Olimex"
-[8]: https://hackaday.io/page/394994?utm_source=chatgpt.com "Getting blinky working on the WCH CH32V003F4 development board"
-[9]: https://github.com/aappleby/picorvd?utm_source=chatgpt.com "aappleby/picorvd: GDB-compatible RISC-V Debugger for ..."
-[10]: https://github.com/ch32-rs/wlink?utm_source=chatgpt.com "ch32-rs/wlink: An open source WCH-Link library/command line tool ..."
-[11]: https://github.com/basilhussain/ch32v003-bootloader-docs?utm_source=chatgpt.com "WCH CH32V003 Factory Bootloader - The Missing Manual"
-[12]: https://pallavaggarwal.in/2023/11/22/ch32v003-how-to-flash-program-using-serial-port/?utm_source=chatgpt.com "CH32V003: How To Flash Program Using Serial Port »"
+[7]: https://www.olimex.com/Products/RISC-V/WCH/WCH-LinkE/resources/WCH-LinkUserManual.PDF "[PDF] WCH-LinkUserManual - Olimex"
+[8]: https://hackaday.io/page/394994 "Getting blinky working on the WCH CH32V003F4 development board"
+[9]: https://github.com/aappleby/picorvd "aappleby/picorvd: GDB-compatible RISC-V Debugger for ..."
+[10]: https://github.com/ch32-rs/wlink "ch32-rs/wlink: An open source WCH-Link library/command line tool ..."
+[11]: https://github.com/basilhussain/ch32v003-bootloader-docs "WCH CH32V003 Factory Bootloader - The Missing Manual"
+[12]: https://pallavaggarwal.in/2023/11/22/ch32v003-how-to-flash-program-using-serial-port/ "CH32V003: How To Flash Program Using Serial Port »"
 
