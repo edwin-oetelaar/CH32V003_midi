@@ -1,18 +1,17 @@
 
 FATAR gebuikt 2 soorten connectors
-Micromatch 16 pins en micromatch 20 pins
-A: distance between connectors
-A =54,7 mm
+- Micromatch 16 pins en micromatch 20 pins
+- A: distance between connectors - A =54,7 mm
  
- • 25 notes: 1x 20
- • 37 notes: 1x 20
- • 44 notes: 1x 20
- • 49 notes: 2x 16
- • 61 notes: 2x 16
+ - 25 notes: 1x 20 (pin 1,2 unused en 11,12 unused)
+ - 37 notes: 1x 20 (pin 1,2 nu in gebruik voor MK0=1 en MK1=2)
+ - 44 notes: 1x 20 (pin 1,2 nu in gebruik voor MK0=1 en MK1=2 en MK5=11, BR5=12)
+ - 49 notes: 2x 16
+ - 61 notes: 2x 16
 
+Fatar keyboard connector voor 25 toetsen 
 
-
-Fatar keyboard connector (MICROMATCH P/N 2-215079-0) met pinnummers van 1 tot 20:
+* (MICROMATCH P/N 2-215079-0) met pinnummers van 1 tot 20:
 
 | Pin Number | Function |
 |------------|----------|
@@ -45,3 +44,30 @@ Fatar keyboard connector (MICROMATCH P/N 2-215079-0) met pinnummers van 1 tot 20
   - `MK1` t/m `MK4`: Make-signalen (4 kanalen voor 1e toetsactivering)
   - `unused`: Niet aangesloten pinnen
 - **Connector**: MICROMATCH P/N 2-215079-0 (25-toetsen versie)
+
+
+Info voor de 16 pins connectoren
+
+* (MICROMATCH P/N 1-215079-6) met pinnummers van 1 tot 16:
+
+| Pin Number | Function_Con1 | Function_Con2 |
+|------------|----------|--------|
+| 01          | MK4   | MK0 |
+| 02          | BR4   | BR0 |
+| 03          | MK5      | MK1 |
+| 04          | BR5      | BR1 |
+| 05          | MK6      | MK2 |
+| 06          | BR6      | BR2 |
+| 07          | MK7      | MK3 |
+| 08          | BR7      | BR3 |
+| 09         | T 7      | T7 |
+| 10         | T 6      | T6 |
+| 11         | T 5      | T5  |
+| 12         | T 4      | T4 |
+| 13         | T 3      | T3 |
+| 14         | T 2      | T2  |
+| 15         | T 1      | T1 |
+| 16         | T 0      | T0 |
+
+
+
